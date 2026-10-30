@@ -11,5 +11,4 @@ class Customer extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['track', 'name', 'whatsapp', 'email', 'enter_order', 'finished_order'];
-    protected $dates = ['deleted_at'];
 }

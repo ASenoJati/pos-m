@@ -11,7 +11,6 @@ class Checkout extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['customer_id', 'track_id', 'item_id', 'qty', 'note', 'discount'];
-    protected $dates = ['deleted_at'];
 
     public function item()
     {

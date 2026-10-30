@@ -12,7 +12,7 @@ class TransactionController extends Controller
     public function new_transaction($id)
     {
         $getItemAll['data'] = Item::orderby("name", "asc")->select('id', 'name')->get();
-        $getCustomer = Customer::where("track", $id)->first();
+        $getCustomer = Customer::where("track", $id)->firstOrFail();
         $data = [
             'customer_id' => $getCustomer->id,
             'customer_data' => $getCustomer,

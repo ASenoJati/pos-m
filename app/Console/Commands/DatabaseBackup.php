@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseBackup extends Command
@@ -20,26 +20,46 @@ class DatabaseBackup extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Membuat dump database ke storage/app/backup';
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-        if (!Storage::exists('backup')) {
-            Storage::makeDirectory('backup');
+        $connection = config('database.connections.'.config('database.default'));
+
+        if (($connection['driver'] ?? null) !== 'mysql') {
+            $this->error('Backup hanya mendukung koneksi MySQL.');
+
+            return self::FAILURE;
         }
 
-        $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+        Storage::makeDirectory('backup');
 
-        $command = "mysqldump --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD')
-            . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE')
-            . "  | gzip > " . storage_path() . "/app/backup/" . $filename;
+        $path = Storage::path('backup/backup-'.now()->format('Y-m-d').'.sql');
 
-        $returnVar = NULL;
-        $output  = NULL;
+        $result = Process::timeout(600)->run([
+            'mysqldump',
+            '--host='.$connection['host'],
+            '--port='.$connection['port'],
+            '--user='.$connection['username'],
+            '--password='.$connection['password'],
+            '--single-transaction',
+            '--routines',
+            $connection['database'],
+            '--result-file='.$path,
+        ]);
 
-        exec($command, $output, $returnVar);
+        if ($result->failed()) {
+            $this->error('Backup gagal: '.$result->errorOutput());
+            report(new \RuntimeException('Backup database gagal: '.$result->errorOutput()));
+
+            return self::FAILURE;
+        }
+
+        $this->info('Backup tersimpan: '.$path);
+
+        return self::SUCCESS;
     }
 }

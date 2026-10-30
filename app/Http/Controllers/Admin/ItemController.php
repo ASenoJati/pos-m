@@ -53,14 +53,14 @@ class ItemController extends Controller
         $data = [
             "pageGroup" => "0",
             "pageTitle" => "Item Data",
-            "itemdata" => Item::find($id),
+            "itemdata" => Item::findOrFail($id),
         ];
         return view('v2.admin.item-edit', $data);
     }
 
     public function saveUpdateItemData(Request $request)
     {
-        Item::find($request->id)->update([
+        Item::findOrFail($request->id)->update([
             "name" => $request->name,
             "price" => $request->price,
             "type" => $request->type,

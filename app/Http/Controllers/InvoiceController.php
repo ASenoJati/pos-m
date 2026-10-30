@@ -10,7 +10,7 @@ class InvoiceController extends Controller
     public function customerInvoice($id)
     {
 
-        $customer = Customer::where("track", $id)->first();
+        $customer = Customer::where("track", $id)->firstOrFail();
         $itemCustomer = Checkout::where("track_id", $id)->get();
         $data = [
             "customer" => $customer,
