@@ -4,11 +4,16 @@ Folder ini berisi hasil analisis dan rencana upgrade aplikasi dari **Laravel 9.5
 **Laravel 13.x**. Dokumen ditulis untuk dikerjakan bertahap oleh satu developer, dengan
 setiap fase punya kriteria selesai dan cara rollback sendiri.
 
+> **Status: sudah dieksekusi (30 Oktober 2026).** Aplikasi kini berjalan di **Laravel 13.39.0**
+> dengan 9 test hijau dan `composer audit` bersih. Lihat
+> [04-CATATAN-EKSEKUSI.md](04-CATATAN-EKSEKUSI.md) untuk hasil, penyimpangan, dan sisa pekerjaan.
+
 | Berkas | Isi | Kapan dibaca |
 |---|---|---|
 | [01-RENCANA-UPGRADE.md](01-RENCANA-UPGRADE.md) | Rencana lengkap: strategi, 7 fase, matriks dependensi, risiko, rollback, linimasa | Sebelum mulai; jadi acuan utama |
 | [02-ANALISIS-PROYEK.md](02-ANALISIS-PROYEK.md) | Audit kode: profil teknis, peta rute, 12 temuan dengan bukti path:baris | Saat ingin tahu **mengapa** sesuatu harus dikerjakan |
 | [03-CHECKLIST-EKSEKUSI.md](03-CHECKLIST-EKSEKUSI.md) | Lembar kerja: checkbox per fase, blok `composer.json` siap tempel, tabel verifikasi 22 halaman | Setiap hari saat mengeksekusi |
+| [04-CATATAN-EKSEKUSI.md](04-CATATAN-EKSEKUSI.md) | Hasil aktual: rantai commit, penyimpangan dari rencana, verifikasi, sisa pekerjaan | Setelah eksekusi / saat deploy |
 
 ## Ringkasan satu paragraf
 
