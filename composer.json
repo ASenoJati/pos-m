@@ -5,18 +5,18 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "guzzlehttp/guzzle": "^7.9",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^13.0",
         "laravel/sanctum": "^4.0",
-        "laravel/tinker": "^2.10",
-        "yajra/laravel-datatables-oracle": "^12.0"
+        "laravel/tinker": "^3.0",
+        "yajra/laravel-datatables-oracle": "^13.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.50"
+        "phpunit/phpunit": "^12.5"
     },
     "autoload": {
         "psr-4": {
@@ -53,8 +53,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "policy": false
+        "sort-packages": true
     },
     "minimum-stability": "stable",
     "prefer-stable": true
