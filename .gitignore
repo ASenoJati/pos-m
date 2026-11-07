@@ -1,1 +1,18 @@
-.htaccess
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+
+# Artefak Vite (public/build) sengaja TIDAK diabaikan:
+# ikut di-commit untuk deploy runtime offline (keputusan Fase 0, 8 Nov 2026).
