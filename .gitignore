@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Artefak Vite (public/build) sengaja TIDAK diabaikan:
+# ikut di-commit untuk deploy runtime offline (keputusan Fase 0, 8 Nov 2026).
